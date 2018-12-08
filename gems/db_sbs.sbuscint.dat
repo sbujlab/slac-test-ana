@@ -1,0 +1,7 @@
+sbs.sbuscint.crate = 4
+sbs.sbuscint.slot = 3
+sbs.sbuscint.lo = 0
+sbs.sbuscint.hi = 2
+sbs.sbuscint.npaddles = 2
+sbs.sbuscint.position = 0  0  1.381
+sbs.sbuscint.size = 1.76  0.36  0.005

@@ -1,0 +1,41 @@
+
+sbs.gems.planeconfig = x1 y1 x2 y2 
+
+sbs.gems.cratemap = 4 0
+
+sbs.gems.xp.res = 200e-6
+
+sbs.gems.x1.position = 0.0 0.0 0.0
+sbs.gems.x1.size     = 0.1 0.2 0.001
+
+#crate slot mpd_id gem_id adc_id i2c pos invert
+sbs.gems.x1.chanmap = \
+4 0 4 0 4 0 0 0 \
+4 0 4 0 5 1 1 0 
+
+sbs.gems.y1.position = 2.0 3.0 4.0
+sbs.gems.y1.size     = 0.1 0.2 0.001
+
+sbs.gems.y1.chanmap = \
+4 0 4 0 0 8 0 0 \
+4 0 4 0 1 9 1 0 \ 
+4 0 4 0 2 10 2 0 \
+4 0 4 0 3 11 3 0 
+
+sbs.gems.x2.position = 0.0 0.0 0.0
+sbs.gems.x2.size     = 0.1 0.2 0.001
+
+#crate slot mpd_id gem_id adc_id i2c pos invert
+sbs.gems.x2.chanmap = \
+4 0 4 1 12 6 0 0 \
+4 0 4 1 13 7 1 0 
+
+sbs.gems.y2.position = 2.0 3.0 4.0
+sbs.gems.y2.size     = 0.1 0.2 0.001
+
+sbs.gems.y2.chanmap = \
+4 0 4 1 8 16 0 0 \
+4 0 4 1 9 17 1 0 \ 
+4 0 4 1 10 18 2 0 \
+4 0 4 1 11 19 3 0 
+
