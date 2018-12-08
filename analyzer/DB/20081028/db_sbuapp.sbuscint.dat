@@ -1,0 +1,7 @@
+sbuapp.sbuscint.crate = 4
+sbuapp.sbuscint.slot = 3
+sbuapp.sbuscint.lo = 0
+sbuapp.sbuscint.hi = 2
+sbuapp.sbuscint.npaddles = 2
+sbuapp.sbuscint.position = 0  0  1.381
+sbuapp.sbuscint.size = 1.76  0.36  0.005

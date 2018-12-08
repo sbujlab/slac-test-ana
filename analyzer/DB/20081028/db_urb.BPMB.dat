@@ -1,0 +1,7 @@
+urb.BPMB.detmap =
+      4    21    20    23     1  1881
+urb.BPMB.position = -0.00100634  0.00228915  -2.214
+urb.BPMB.calib_rot = 0.01887
+urb.BPMB.pedestals = 10  137  36  187
+urb.BPMB.rotmatrix = -0.686875  0.737689  0.735834  0.691631
+

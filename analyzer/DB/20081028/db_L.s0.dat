@@ -1,0 +1,21 @@
+L.s0.detmap =
+      3    23    32    33     1  1881
+      4    25    32    33     1  1875
+L.s0.npaddles = 1
+L.s0.position = 0  0  0.4
+L.s0.size = 1.76  0.36  0.005
+L.s0.R.off = -3.1
+L.s0.L.ped = 509
+L.s0.R.ped = 534
+L.s0.L.gain = 1.02
+L.s0.R.gain = 0.87
+L.s0.avgres = 1e-10
+L.s0.atten = 0.7
+L.s0.Cn = 1.7e+08
+L.s0.MIP = 1e+10
+L.s0.tdc.res = 1e-10
+L.s0.timewalk_params =
+   0
+   0
+L.s0.retiming_offsets = 0
+

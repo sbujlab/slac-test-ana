@@ -1,0 +1,7 @@
+urb.BPMA.detmap =
+      4    21    16    19     1  1881
+urb.BPMA.position = -3.11576e-04  1.09736e-03  -7.34500e+00
+urb.BPMA.calib_rot = 0.01887
+urb.BPMA.pedestals = 329  27  13  249
+urb.BPMA.rotmatrix = -0.738959  0.759596  0.758844  0.747731
+

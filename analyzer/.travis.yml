@@ -1,0 +1,31 @@
+os: linux
+dist: trusty
+sudo: false
+compiler: gcc
+language: cpp
+env:
+  global:
+    - MAKEFLAGS="-j2"
+    - SCONSFLAGS="-j2"
+    - ANALYZER="."
+    - LD_LIBRARY_PATH=$ANALYZER:$LD_LIBRARY_PATH
+install:
+  - wget https://root.cern.ch/download/root_v6.12.06.Linux-ubuntu14-x86_64-gcc4.8.tar.gz -O /tmp/root.tar.gz
+  - tar -xzf /tmp/root.tar.gz
+  - source ./root/bin/thisroot.sh
+  - python --version
+  - scons --version
+script:
+  - make
+  - scons
+after_success:
+  - ldd $ANALYZER/analyzer
+  - $ANALYZER/analyzer --version
+  - $ANALYZER/analyzer -q
+branches:
+  only: master
+notifications:
+  email:
+    recipients: ole@jlab.org
+    on_success: always
+    on_failure: always

@@ -1,0 +1,86 @@
+# Compiled stuff
+*.o
+*.d
+*.os
+lib*.so*
+lib*.dylib*
+analyzer
+hana_decode/epicsd
+hana_decode/prfact
+hana_decode/tst1190
+hana_decode/tdecex
+hana_decode/tdecpr
+hana_decode/tstfadc
+hana_decode/tstf1tdc
+hana_decode/tstio
+hana_decode/tstoo
+hana_decode/tstskel
+utils/dbconvert
+bin/
+/build*
+
+# Generated files
+*Dict.C
+*Dict.h
+*Dict.cxx
+*Dict.so
+ha_compiledata.h
+cppcheck_report.txt
+ChangeLog
+*.pcm
+
+# Editor lint
+.#*
+*~
+*.sw?
+
+# Helpers
+/fix-filedates.sh
+evio/
+
+# Standalone distribution support files
+/hana_scaler/scaler.map
+
+# Work directory clutter, test files, replay output etc.
+/db*.dat
+*.root
+*.odef
+*.cdef
+*.png
+*.patch
+
+#scons stuff
+config.log
+*.pyc
+.sconsign.dblite
+.sconf_temp/
+/dist/
+
+#eclipse stuff
+.project
+.cproject
+.pydevproject
+.settings/
+
+#Doxygen stuff
+docs/Doxygen.tag
+docs/ROOT.tag
+docs/html
+
+#cdaq cluster stuff
+hana_decode/ROOTfiles
+hana_decode/db_cratemap.dat
+hana_decode/raw
+hana_decode/cache
+hana_decode/runfadc.csh
+hana_decode/runftdc.csh
+hana_decode/snippet.dat
+
+#decoder debug stuff
+hana_decode/*_debug.txt
+
+#user specific stuff
+setup.csh
+
+# macOS pollution
+.DS_Store
