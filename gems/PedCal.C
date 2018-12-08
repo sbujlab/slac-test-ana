@@ -51,7 +51,7 @@ void PedCal()
     		xstrip.push_back(dumy1);
     		ystrip.push_back(dumy2);
     	}
-        fh_infile>>dumy1; 
+       // fh_infile>>dumy1; 
 	fh_infile>>argc;
 	cout<<"Run number "<<argc<<endl;
 	fh_infile.close();

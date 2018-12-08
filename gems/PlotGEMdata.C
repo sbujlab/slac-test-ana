@@ -1,5 +1,6 @@
 #include "TFile.h"
 #include "TH1F.h"
+#include <assert.h>
 #include <utility>
 #include "TChain.h"
 #include <algorithm>
@@ -8,13 +9,9 @@
 #include <utility>
 #include <vector>
 #include <map>
-#include <cstdlib>
-#include <functional>
-#include <math.h>
-#include <iterator>
 #include <TCanvas.h>
 
-void PlotGEMData(int event)
+void PlotGEMdata(int event)
 //void PlotGEMData()
 {
 	gStyle->SetOptStat(0);
@@ -37,22 +34,18 @@ void PlotGEMData(int event)
 	for(int pq=0;pq<NoOfDet;pq++)
 	{
 		fh_infile>>dumy1>>dumy2;
-		//cout<<"Det "<<pq<<" xch "<<dumy1<<" ych "<<dumy2<<endl;
+		cout<<"Det "<<pq<<" xch "<<dumy1<<" ych "<<dumy2<<endl;
 		xstrip.push_back(dumy1);
 		ystrip.push_back(dumy2);
 	}
 	fh_infile>>argc;
 	fh_infile.close();
-	/*	
-	for(int detnumber=0;detnumber<NDet;detnumber++)
-	{
-		cout<<"Det "<<detnumber<<" xstrip "<<xstrip[detnumber]<<" ystrip "<<ystrip[detnumber]<<endl;
-	}*/	
+
     	cout<<"The run mumber: "<<argc<<endl;
     	TChain *T = new TChain("T");
     	//int argc=796;
 	//cin>>argc;
-	T->Add(Form("~/rootfiles/test_%d.root",argc));
+	T->Add(Form("~/rootfiles/run_%d.root",argc));
       	//  cout<<"hi Chandan 1"<<endl;
 	
 	map<int, vector<TH1F*> > h_sample;
@@ -96,9 +89,8 @@ void PlotGEMData(int event)
 	int entries = T->GetEntries();
 	if(event<entries)
     	{
-		for(int detnumber = 0;detnumber<NDet;detnumber++)
+		for(int detnumber = 0;detnumber<NoOfDet;detnumber++)
 		{
-			
 			h_sample[detnumber].clear();
 	   	
       			cout<<"detnumber  "<<detnumber<<" xch "<<xstrip[detnumber]<<" ych "<<ystrip[detnumber]<<endl;	
@@ -113,39 +105,30 @@ void PlotGEMData(int event)
 		      		T->SetBranchAddress(Form("sbs.gems.y%d.adc%d",detnumber+1,ij),yadc[detnumber][ij]);
 		  	}
 	    	
-			for(int ij=0;ij<(int)(1.*(xstrip[detnumber]+ystrip[detnumber])/128.);ij++)
+			for(int ij=0;ij<(int)((xstrip[detnumber]+ystrip[detnumber])/128);ij++)
 			{
-				//cout<<"det "<<detnumber<<" ij "<<ij<<endl;
-				if(ij<(int)(xstrip[detnumber]/128.))
-				{
-					cout<<"det "<<detnumber<<"xapv ij "<<ij<<endl;
+				if(ij<(int)(xstrip[detnumber]/128))
 					h_sample[detnumber].push_back(new TH1F(Form("Det_%d_apv_%d",detnumber+1,ij+1),Form("Det %d X APV %d",detnumber+1,ij+1),793,0,793));
-				}
 				else
-				{
-					cout<<"det "<<detnumber<<"yapv  ij "<<ij<<endl;
 		 			h_sample[detnumber].push_back(new TH1F(Form("Det_%d_apv_%d",detnumber+1,ij+1),Form("Det %d Y APV %d",detnumber+1,ij+1),793,0,793));
-				}
 			}
-			cout<<"det "<<detnumber<<" hsample size "<<h_sample[detnumber].size()<<endl;
-			//cout<<"Test "<<(int)((xstrip[detnumber]+ystrip[detnumber])/128.)<<endl;
 		}
+
+		cout<<"test 2"<<endl;	
 		
-		T->GetEntry(event-1);
-		//cout<<"test 2"<<endl;	
+		T->GetEntry(event);
 		//cout<<"x_strip "<<x_strip<<"  y_strip "<<y_strip<<endl;
 		for(int detnumber=0;detnumber<NDet;detnumber++)
 		{
-			//map<int, vector<TH1F*> >::iterator it;
-			//it=h_sample.begin();
-			//it->first = detnumber;
 			for(int pq=0;pq<xstrip[detnumber];pq++)
 			{
-			cout<<"pq "<<pq<<" test 2"<<endl;	
 				if(pq<128)
 				{
 	      				for(int ik=0;ik<6;ik++)
 	    				{
+						//h_x_1->Fill(pq+131*ik,xadc[ik][pq]);
+						//h_x_1->Fill(xstripID[pq]+131*ik,xadc[ik][pq]);
+						//h_x_1->SetBinContent(xstripID[pq]+131*ik,xadc[ik][pq]);
 						h_sample[detnumber][0]->SetBinContent(xstripID[detnumber][pq]+131*ik,xadc[detnumber][ik][pq]);
 	    				}
 				}
@@ -154,6 +137,9 @@ void PlotGEMData(int event)
 				{
 	      				for(int ik=0;ik<6;ik++)
 	    				{
+						//h_x_2->Fill(pq+131*ik-128,xadc[ik][pq]);
+						//h_x_2->Fill(xstripID[pq]+131*ik-128,xadc[ik][pq]);
+						//h_x_2->SetBinContent(xstripID[pq]+131*ik-128,xadc[ik][pq]);
 						h_sample[detnumber][1]->SetBinContent(xstripID[detnumber][pq]+131*ik-128,xadc[detnumber][ik][pq]);
 	    				}
 				}
@@ -165,6 +151,9 @@ void PlotGEMData(int event)
 				{
 	      				for(int ik=0;ik<6;ik++)
 	    				{
+						//h_y_1->Fill(pq+131*ik,yadc[ik][pq]);
+						//h_y_1->Fill(ystripID[pq]+131*ik,yadc[ik][pq]);
+						//h_y_1->SetBinContent(ystripID[pq]+131*ik,yadc[ik][pq]);
 						h_sample[detnumber][2]->SetBinContent(ystripID[detnumber][pq]+131*ik,yadc[detnumber][ik][pq]);
 	    				}
 				}
@@ -172,6 +161,9 @@ void PlotGEMData(int event)
 				{
 	      				for(int ik=0;ik<6;ik++)
 	    				{
+						//h_y_2->Fill(pq+131*ik-128,yadc[ik][pq]);
+						//h_y_2->Fill(ystripID[pq]+131*ik-128,yadc[ik][pq]);
+						//h_y_2->SetBinContent(ystripID[pq]+131*ik-128,yadc[ik][pq]);
 						h_sample[detnumber][3]->SetBinContent(ystripID[detnumber][pq]+131*ik-128,yadc[detnumber][ik][pq]);
 	    				}
 				}
@@ -179,6 +171,9 @@ void PlotGEMData(int event)
 				{
 	      				for(int ik=0;ik<6;ik++)
 	    				{
+						//h_y_3->Fill(pq+131*ik-128*2,yadc[ik][pq]);
+						//h_y_3->Fill(ystripID[pq]+131*ik-128*2,yadc[ik][pq]);
+						//h_y_3->SetBinContent(ystripID[pq]+131*ik-128*2,yadc[ik][pq]);
 						h_sample[detnumber][4]->SetBinContent(ystripID[detnumber][pq]+131*ik-128*2,yadc[detnumber][ik][pq]);
 	    				}
 				}
@@ -186,6 +181,9 @@ void PlotGEMData(int event)
 				{
 	      				for(int ik=0;ik<6;ik++)
 	    				{
+						//h_y_4->Fill(pq+131*ik-128*3,yadc[ik][pq]);
+						//h_y_4->Fill(ystripID[pq]+131*ik-128*3,yadc[ik][pq]);
+						//h_y_4->SetBinContent(ystripID[pq]+131*ik-128*3,yadc[ik][pq]);
 						h_sample[detnumber][5]->SetBinContent(ystripID[detnumber][pq]+131*ik-128*3,yadc[detnumber][ik][pq]);
 	    				}
 				}
