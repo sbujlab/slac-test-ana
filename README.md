@@ -6,6 +6,23 @@ To compile the "Ana" SLAC Test 2018 quartz + GEM detector analyzer:
 ```
 git clone git@github.com:sbujlab/slac-test-ana
 cd slac-test-ana
+mkdir CODA
+
+Open .bashrc and add these lines
+```
+export CODA=~/path-to-analyzer/slac-test-ana/CODA
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/path-to-analyzer/evio/include
+```
+
+cd evio
+scons install
+(may need to install scons)
+
+Open .bashrc and add the line
+```
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/path-to-analyzer/CODA/Linux-x86_64/lib
+```
+
 cd analyzer
 make
 ```
